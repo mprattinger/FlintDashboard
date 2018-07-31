@@ -57,15 +57,20 @@ span {
 
 .wrapper {
     display: flex;
-    align-items: stretch;
+    /* align-items: stretch; */
+    width: 100%;
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    width: 250px;
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
 }
 
 #sidebar.active {
@@ -149,6 +154,28 @@ a[aria-expanded="true"] {
     background: #6d7fcc;
 }
 
+#dismiss {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    /* top right corner of the sidebar */
+    top: 10px;
+    left: 220px;
+}
+
+#sidebar.active #dismiss {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    /* top right corner of the sidebar */
+    top: 10px;
+    left: 35px;
+}
+
+.hide-Menu-Text{
+    display: none;
+}
+
 a[data-toggle="collapse"] {
     position: relative;
 }
@@ -195,12 +222,18 @@ a.article:hover {
 ----------------------------------------------------- */
 
 #content {
-    width: 100%;
+    /* width: 100%; */
+    width: calc(100% - 250px);
     padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
-
+#content.active {
+    width: calc(100% - 80px);
+}
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
@@ -210,7 +243,18 @@ a.article:hover {
         min-width: 80px;
         max-width: 80px;
         text-align: center;
-        margin-left: -80px !important;
+        /* margin-left: -80px !important; */
+    }
+    
+    #content {
+        /* width: 100%; */
+        width: calc(100% - 80px);
+        padding: 20px;
+        min-height: 100vh;
+        transition: all 0.3s;
+        position: absolute;
+        top: 0;
+        right: 0;
     }
     .dropdown-toggle::after {
         top: auto;
@@ -232,6 +276,7 @@ a.article:hover {
     }
     #sidebar ul li a {
         padding: 20px 10px;
+        text-align: center;
     }
     #sidebar ul li a span {
         font-size: 0.85em;
@@ -249,7 +294,11 @@ a.article:hover {
     #sidebar {
         margin-left: 0;
     }
-    #sidebarCollapse span {
+    /* #sidebarCollapse span {
+        display: none;
+    } */
+
+    .menuText {
         display: none;
     }
 }
